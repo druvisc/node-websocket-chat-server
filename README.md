@@ -2,4 +2,4 @@
 
 `npm start`
 
-See `config.js` for confgiuration options.
+See `config.js` for configuration options.
