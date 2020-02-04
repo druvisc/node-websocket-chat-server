@@ -1,6 +1,5 @@
 const CONFIG = {
   DEFAULT_PORT: 8080,
-  DEFAULT_HOST: 'localhost',
   SERVER_USERNAME: 'Server',
   MAX_USERNAME: 16,
   MAX_PAYLOAD: 512,

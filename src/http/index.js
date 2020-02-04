@@ -1,22 +1,23 @@
 const http = require('http')
-const { DEFAULT_HOST, DEFAULT_PORT } = require('../config')
+const { DEFAULT_PORT } = require('../config')
 const { info } = require('../utils')
 const { onUpgrade } = require('./events')
 const { api } = require('./api')
 
-const host = process.env.HOST || DEFAULT_HOST
 const port = process.env.PORT || DEFAULT_PORT
+const env = process.env.NODE_ENV || 'development'
 
-const server = http
-  .createServer(api)
-  .listen(port, host, () =>
-    info(`HTTP and WS server running at http://${host}:${port}/`)
-  )
+const server = http.createServer(api).listen(port)
+const address = server.address()
+const host = env === 'development' ? 'localhost' : address.address
+
+server.on('listening', () =>
+  info(`HTTP and WS server in ${env} listening on http://${host}:${port}/`)
+)
 
 server.on('upgrade', onUpgrade)
 
 module.exports = {
-  host,
   port,
   server
 }
