@@ -18,5 +18,5 @@ const CLOSE_CODE = {
 }
 
 module.exports = {
-  CLOSE_CODE,
+  CLOSE_CODE
 }
