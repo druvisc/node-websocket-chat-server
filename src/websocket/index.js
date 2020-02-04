@@ -4,9 +4,9 @@ const {
   INACTIVITY_LIMIT,
   CHECK_INACTIVITY_INTERVAL
 } = require('../config')
-const { onConnection } = require('./events/onConnection')
 const { session: wsSession, getUsernames } = require('./session')
 const { closeConnection, broadcastMessage } = require('./utils')
+const { onConnection } = require('./events')
 const { CLOSE_CODE } = require('./const')
 const { MESSAGE } = require('./types')
 
