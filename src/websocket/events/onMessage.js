@@ -70,6 +70,4 @@ const onMessage = ({ server, client, message, signature }) => {
   })
 }
 
-module.exports = {
-  onMessage
-}
+module.exports = onMessage

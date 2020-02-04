@@ -18,6 +18,4 @@ const onClose = ({ server, client, signature }) => {
   })
 }
 
-module.exports = {
-  onClose
-}
+module.exports = onClose

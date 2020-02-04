@@ -2,8 +2,8 @@ const { log } = require('../../utils')
 const { session: wsSession, getUsernames } = require('../session')
 const { broadcastMessage } = require('../utils')
 const { MESSAGE } = require('../types')
-const { onMessage } = require('./onMessage')
-const { onClose } = require('./onClose')
+const onMessage = require('./onMessage')
+const onClose = require('./onClose')
 
 const onConnection = ({ server, client, req }) => {
   const session = wsSession.get(client)
@@ -32,6 +32,4 @@ const onConnection = ({ server, client, req }) => {
   })
 }
 
-module.exports = {
-  onConnection
-}
+module.exports = onConnection
