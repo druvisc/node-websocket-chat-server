@@ -58,8 +58,8 @@ const _broadcast = (string, clients) =>
 
 const closeConnection = (client, code, reason) => {
   const session = wsSession.get(client)
-  log('closeConnection() client:', client)
-  const signature = `'${session.username}' (${client._socket._peername.address})`
+  log('closeConnection() client_socket:', client._socket)
+  const signature = `'${session.username}' ()`
   wsSession.delete(client)
   log(`CLOSE CONNECTION ${signature}: ${code} - ${reason}`)
   client.close(code, reason)
