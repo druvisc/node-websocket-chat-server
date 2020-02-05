@@ -1,5 +1,3 @@
-Available at http://druvisc-react-websocket-chat.herokuapp.com/
-
 `npm install`
 
 `npm start`
