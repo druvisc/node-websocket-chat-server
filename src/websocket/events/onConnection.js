@@ -12,7 +12,7 @@ const onConnection = ({ server, client, req }) => {
     return client.destroy()
   }
 
-  const signature = `'${session.username}' (${req.headers.origin})`
+  const signature = `'${session.username}' (${req.connection.remoteAddress})`
   log(`CLIENT CONNECTION ${signature}`)
 
   broadcastMessage(server.clients, MESSAGE.USER_CONNECTED, {

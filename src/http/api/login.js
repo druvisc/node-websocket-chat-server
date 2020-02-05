@@ -34,11 +34,11 @@ const Login = async (req, res) => {
       if (usernameTaken)
         return Unauthorized(res, { error: `Username '${username}' is taken.` })
 
-      httpSession.set(req.headers.origin, { username })
-      const signature = `'${username}' (${req.headers.origin})`
+      httpSession.set(req.connection.remoteAddress, { username })
+      const signature = `'${username}' (${req.connection.remoteAddress})`
       log(`HTTP session created for '${signature}' `)
-      // log(`httpSession keys:`, [...httpSession.keys()])
-      // log(`httpSession values:`, [...httpSession.values()])
+      log(`httpSession keys:`, [...httpSession.keys()])
+      log(`httpSession values:`, [...httpSession.values()])
 
       return Ok(res, { username })
     }
