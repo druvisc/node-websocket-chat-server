@@ -6,8 +6,6 @@ const { session: httpSession } = require('../session')
 const onUpgrade = (req, socket, head) => {
   const ip = getReqRemoteAddress(req)
   log(`UPGRADING (${ip})`)
-  // log(`httpSession keys:`, [...httpSession.keys()])
-  // log(`httpSession values:`, [...httpSession.values()])
   const session = httpSession.get(ip)
   if (!session) {
     log(`UPGRADE ERROR: No session.`)
