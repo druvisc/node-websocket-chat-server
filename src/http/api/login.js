@@ -35,7 +35,8 @@ const Login = async (req, res) => {
         return Unauthorized(res, { error: `Username '${username}' is taken.` })
 
       httpSession.set(req.headers.host, { username })
-      log(`HTTP session created for '${username}'`)
+      log(`HTTP session created for '${username}' (${req.headers.host})`)
+      log(`httpSession:`, [...httpSession.values()])
 
       return Ok(res, { username })
     }
