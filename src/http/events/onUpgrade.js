@@ -5,9 +5,8 @@ const { session: httpSession } = require('../session')
 
 const onUpgrade = (req, socket, head) => {
   log(`UPGRADING (${req.headers.origin})`)
-  log(`httpSession keys:`, [...httpSession.keys()])
-  log(`httpSession values:`, [...httpSession.values()])
-
+  // log(`httpSession keys:`, [...httpSession.keys()])
+  // log(`httpSession values:`, [...httpSession.values()])
   const session = httpSession.get(req.headers.origin)
   if (!session) {
     log(`UPGRADE ERROR: No session.`)
