@@ -25,6 +25,8 @@ const promisify = cb => {
 }
 
 module.exports = {
+  getReqRemoteAddress,
+  getSocketRemoteAddress,
   log,
   info,
   error,
