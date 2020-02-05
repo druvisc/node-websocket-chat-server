@@ -18,7 +18,8 @@ const sanitizeRemoteAddress = ip => {
   return ip
 }
 
-const getSocketRemoteAddress = socket => socket._socket.remoteAddress
+const getSocketRemoteAddress = socket =>
+  sanitizeRemoteAddress(socket._socket.remoteAddress)
 
 const getTimestamp = (date = new Date()) =>
   `${date.toLocaleTimeString()} ${date.toLocaleDateString()}`
