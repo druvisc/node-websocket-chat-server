@@ -37,8 +37,8 @@ const Login = async (req, res) => {
       log(`req:`, req)
       log(`res:`, res)
 
-      httpSession.set(req.headers.host, { username })
-      const signature = `'${username}' (${req.headers.host})`
+      httpSession.set(req.headers.origin, { username })
+      const signature = `'${username}' (${req.headers.origin})`
       log(`HTTP session created for '${signature}' `)
       log(`httpSession keys:`, [...httpSession.keys()])
       log(`httpSession values:`, [...httpSession.values()])
