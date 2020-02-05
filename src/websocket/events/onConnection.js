@@ -1,4 +1,4 @@
-const { log } = require('../../utils')
+const { log, getReqRemoteAddress } = require('../../utils')
 const { session: wsSession, getUsernames } = require('../session')
 const { broadcastMessage } = require('../utils')
 const { MESSAGE } = require('../types')

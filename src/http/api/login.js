@@ -1,6 +1,6 @@
 const { isUsernameTaken } = require('../../websocket/session')
 const { MAX_USERNAME } = require('../../config')
-const { log } = require('../../utils')
+const { log, getReqRemoteAddress } = require('../../utils')
 const {
   Options,
   getRequestBodyJson,

@@ -1,6 +1,6 @@
 const { session: wsSession, createSession } = require('../../websocket/session')
 const { server: wsServer } = require('../../websocket')
-const { log } = require('../../utils')
+const { log, getReqRemoteAddress } = require('../../utils')
 const { session: httpSession } = require('../session')
 
 const onUpgrade = (req, socket, head) => {
