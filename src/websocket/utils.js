@@ -1,5 +1,5 @@
 const WebSocket = require('ws')
-const { log } = require('../utils')
+const { log, getSocketRemoteAddress } = require('../utils')
 const { session: wsSession, createMessageId } = require('./session')
 const { MESSAGE_TYPE } = require('./types')
 
@@ -58,7 +58,8 @@ const _broadcast = (string, clients) =>
 
 const closeConnection = (client, code, reason) => {
   const session = wsSession.get(client)
-  const signature = `'${session.username}' (${client_socket.remoteAddress})`
+  const ip = getSocketRemoteAddress(client)
+  const signature = `'${session.username}' (${ip})`
   wsSession.delete(client)
   log(`CLOSE CONNECTION ${signature}: ${code} - ${reason}`)
   client.close(code, reason)

@@ -4,23 +4,24 @@ const { log } = require('../../utils')
 const { session: httpSession } = require('../session')
 
 const onUpgrade = (req, socket, head) => {
-  log(`UPGRADING (${req.connection.remoteAddress})`)
+  const ip = getReqRemoteAddress(req)
+  log(`UPGRADING (${ip})`)
   log(`httpSession keys:`, [...httpSession.keys()])
   log(`httpSession values:`, [...httpSession.values()])
-  const session = httpSession.get(req.connection.remoteAddress)
+  const session = httpSession.get(ip)
   if (!session) {
     log(`UPGRADE ERROR: No session.`)
     return socket.destroy()
   }
 
   const { username } = session
-  const signature = `'${username}' (${req.connection.remoteAddress})`
+  const signature = `'${username}' (${ip})`
   log(`UPGRADE ${signature}`)
   wsServer.handleUpgrade(req, socket, head, client => {
     const socketSession = createSession({ username })
     wsSession.set(client, socketSession)
     log(`WS session created for ${signature}`)
-    httpSession.delete(req.connection.remoteAddress)
+    httpSession.delete(ip)
     log(`HTTP session deleted for ${signature}`)
     wsServer.emit('connection', client, req)
   })
