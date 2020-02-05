@@ -1,8 +1,21 @@
 const getReqRemoteAddress = req =>
-  req.headers['x-forwarded-for'] ||
+  getReqForwardedAddress(req) ||
   req.connection.remoteAddress ||
   req.socket.remoteAddress ||
   (req.connection.socket ? req.connection.socket.remoteAddress : null)
+
+const getReqForwardedAddress = req => {
+  const address = req.headers['x-forwarded-for']
+  if (!address) return null
+
+  const isIPv4 = address.startsWith('::ffff:')
+  if (isIPv4) {
+    const split = address.split(':')
+    split[split.length - 1]
+  }
+
+  return address
+}
 
 const getSocketRemoteAddress = socket => socket._socket.remoteAddress
 
