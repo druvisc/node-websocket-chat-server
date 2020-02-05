@@ -11,7 +11,7 @@ const getReqForwardedAddress = req => {
   const isIPv4 = address.startsWith('::ffff:')
   if (isIPv4) {
     const split = address.split(':')
-    split[split.length - 1]
+    return split[split.length - 1]
   }
 
   return address
