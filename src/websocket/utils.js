@@ -32,7 +32,6 @@ const createMessage = (type, payload) => ({
 })
 
 const sendJson = (client, json) => {
-  // log('sendJson() json:', json)
   // Throw invalid JSON.
   const string = JSON.stringify(json)
   _send(client, string)
@@ -47,7 +46,6 @@ const broadcastMessage = (clients, type, payload) => {
 }
 
 const broadcastJson = (json, clients) => {
-  // log('broadcastJson() json:', json)
   // Throw invalid JSON.
   const string = JSON.stringify(json)
   _broadcast(string, clients)

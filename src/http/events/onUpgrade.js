@@ -1,11 +1,11 @@
 const { session: wsSession, createSession } = require('../../websocket/session')
-const { server: wsServer } = require('../../websocket')
 const { log, getReqRemoteAddress } = require('../../utils')
+const { server: wsServer } = require('../../websocket')
 const { session: httpSession } = require('../session')
 
 const onUpgrade = (req, socket, head) => {
   const ip = getReqRemoteAddress(req)
-  log(`UPGRADING (${ip})`)
+  log(`UPGRADING ${ip}`)
   const session = httpSession.get(ip)
   if (!session) {
     log(`UPGRADE ERROR: No session.`)
@@ -14,7 +14,6 @@ const onUpgrade = (req, socket, head) => {
 
   const { username } = session
   const signature = `'${username}' (${ip})`
-  log(`UPGRADE ${signature}`)
   wsServer.handleUpgrade(req, socket, head, client => {
     const socketSession = createSession({ username })
     wsSession.set(client, socketSession)
